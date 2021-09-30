@@ -5,6 +5,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class User(AbstractUser):
+	# contact = models.ForeignKey("Contact", on_delete=models.CASCADE, blank=True, null=True)
 	pass
 
 class Contact(models.Model):
@@ -14,6 +15,9 @@ class Contact(models.Model):
 	second_number = PhoneNumberField(null=True, blank=True)
 	last_interaction_on = models.DateTimeField(blank=True, null=True)
 	email = models.EmailField(max_length=254)
+	job_title = models.CharField(max_length=120, blank=True, null=True)
+	company = models.CharField(max_length=120, blank=True, null=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
 
 	def __str__(self):
 		return f"{self.name}"
