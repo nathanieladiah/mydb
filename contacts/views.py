@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -55,11 +56,11 @@ def register(request):
 			user = User.objects.create_user(username, email, password)
 			user.save()
 		except IntegrityError:
-			return render(reqeust, "contacts/register.html", {
+			return render(request, "contacts/register.html", {
 				"message": "Username already taken."
 			})
 		login(request, user)
-		return HttpResponseRedirect(reverse("index"))
+		return HttpResponseRedirect(reverse("dashboard"))
 	else:
 		return render(request, "contacts/register.html")
 
@@ -75,10 +76,18 @@ def contacts(request):
 	user = request.user
 	# contacts = User.objects.filter(username=user.username).values('contact').all()
 	# contacts = Contact.objects.filter(user=user).all()
-	contacts = Contact.objects.filter(user=user)
+	contacts = Contact.objects.filter(user=user).order_by('name')
 	print(contacts)
 	return render(request, "contacts/contact-list.html", {
 		"contacts": contacts
+	})
+
+@login_required
+def contact(request, contact_id):
+	person = Contact.objects.get(pk=contact_id)
+	print(person)
+	return render(request, 'contacts/contact.html', {
+		"person": person
 	})
 
 @login_required
