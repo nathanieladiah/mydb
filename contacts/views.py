@@ -10,7 +10,7 @@ from .models import Contact, User
 # Create your views here.
 
 def index(request):
-	return render(request, "contacts/index.html")
+	return render(request, "contacts/landing/index.html")
 
 # User and authentication views
 def login_view(request):
@@ -26,12 +26,12 @@ def login_view(request):
 			login(request, user)
 			return HttpResponseRedirect(reverse("dashboard"))
 		else:
-			return render(request, "contacts/login.html", {
+			return render(request, "contacts/landing/login.html", {
 				"message": "Invalid username and/or password."
 			})
 
 	else:
-		return render(request, "contacts/login.html")
+		return render(request, "contacts/landing/login.html")
 
 
 def logout_view(request):
@@ -47,7 +47,7 @@ def register(request):
 		password = request.POST["password"]
 		confirmation = request.POST["confirmation"]
 		if password != confirmation:
-			return render(request, "contacts/register.html", {
+			return render(request, "contacts/landing/register.html", {
 				"message": "Passwords must match."
 			})
 
@@ -56,13 +56,13 @@ def register(request):
 			user = User.objects.create_user(username, email, password)
 			user.save()
 		except IntegrityError:
-			return render(request, "contacts/register.html", {
+			return render(request, "contacts/landing/register.html", {
 				"message": "Username already taken."
 			})
 		login(request, user)
 		return HttpResponseRedirect(reverse("dashboard"))
 	else:
-		return render(request, "contacts/register.html")
+		return render(request, "contacts/landing/register.html")
 
 
 # Data views
