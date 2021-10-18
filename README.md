@@ -24,3 +24,6 @@
 	* job and company.
 
 * Use a different template for the dashboard
+TODO: When a page loads remove collapsed from class list and add it to all others (check if they have it first) in the side nav
+
+* Should it be a single page app with javascript to load the different sections?

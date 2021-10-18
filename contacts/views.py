@@ -77,18 +77,17 @@ def contacts(request):
 	# contacts = User.objects.filter(username=user.username).values('contact').all()
 	# contacts = Contact.objects.filter(user=user).all()
 	contacts = Contact.objects.filter(user=user).order_by('name')
-	print(contacts)
-	return render(request, "contacts/contact-list.html", {
+	return render(request, "contacts/dashboard/contactlist.html", {
 		"contacts": contacts
 	})
 
 @login_required
 def contact(request, contact_id):
 	person = Contact.objects.get(pk=contact_id)
-	print(person)
-	return render(request, 'contacts/contact.html', {
+	return render(request, 'contacts/dashboard/contact.html', {
 		"person": person
 	})
+
 
 @login_required
 def meetings(request):

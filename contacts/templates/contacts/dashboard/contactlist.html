@@ -1,0 +1,71 @@
+{% extends 'contacts/dashboard/layout.html' %}
+
+{% load static %}
+
+{% block title %}Contacts{% endblock %}
+
+{% block css %}
+<link href="{% static 'contacts/dashboard/css/contacts.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block page-title %}
+	Contacts
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li class="breadcrumb-item active">Contacts</li>
+{% endblock %}
+
+{% block section %}
+<section class="section contact-list">
+	<div class="row">
+		<div class="col-lg-11">
+			<div class="card">
+				<div class="card-body">
+					<!-- <h5 class="card-title">Do I need another title here?</h5> -->
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th scope="col">Name</th>
+								<th scope="col">email</th>
+								<th scope="col">Phone</th>
+								<th scope="col">Job Title/ Company</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td><a href="#">Hailee Steinfeld</a></td>
+								<td>haile@babe.com</td>
+								<td>1-800-423-8567</td>
+								<td>Actor</td>
+							</tr>
+							<tr>
+								<td>Wade Wilson</td>
+								<td>hello@kitty.com</td>
+								<td>1-800-616-6663</td>
+								<td>Chimichanga eater</td>
+							</tr> -->
+							{% for contact in contacts %}
+								<tr>
+									<td><a href="{% url 'contact' contact.id %}">{{contact.name}}</a></td>
+									<td>{{contact.email}}</td>
+									<td>{{contact.phone_number}}</td>
+									<td>{{contact.job_title}} - {{contact.company}}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- End col -->
+
+		<!-- ====== New Contact Modal ======= -->
+		<button type="button" class="btn btn-primary col-1" data-bs-toggle="modal" data-bs-target="#newContactModal"> 
+			new contact
+		</button>
+		<div class=""
+	</div>
+	<!-- End row -->
+</section>
+{% endblock %}

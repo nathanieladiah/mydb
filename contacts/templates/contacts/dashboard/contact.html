@@ -1,0 +1,219 @@
+{% extends 'contacts/dashboard/layout.html' %}
+
+{% load static %}
+
+{% block title %}{{ person.name }}{% endblock %}
+
+{% block page-title %}
+	{{ person.name }}
+{% endblock %}
+
+{% block breadcrumbs %}
+	<li class="breadcrumb-item"><a href="{% url 'contacts' %}">Contacts</a></li>
+	<li class="breadcrumb-item active">{{ person.name }}</li>
+{% endblock %}
+
+{% block section %}
+	<section class="section profile">
+		<div class="row">
+			<div class="col-xl-4">
+
+				<div class="card">
+					<div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+						<img src="{% static 'contacts/dashboard/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
+						<h2>{{ person.name }}</h2>
+						<h3>{{ person.job_title }}</h3>
+						<div class="social-links mt-2">
+							<a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+							<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+							<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+							<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+						</div>
+					</div>
+				</div>
+
+			</div>	
+			<!-- End col -->
+
+			<div class="col-xl-8">
+
+				<div class="card">
+					<div class="card-body pt-3">
+						<!-- Bordered TAbs -->
+						<ul class="nav nav-tabs nav-tabs-bordered">
+							
+							<li class="nav-item">
+								<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+							</li>
+
+							<li class="nav-item">
+								<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+							</li>
+
+						</ul>
+
+						<div class="tab-content pt-2">
+
+							<div class="tab-pane fade show active profile-overview" id="profile-overview">
+								<h5 class="card-title">About</h5>
+								<p class="small fst-italic">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, sunt repellat esse tempore quasi consequuntur dolorum veritatis itaque totam illo necessitatibus atque iste iure eligendi culpa fuga eveniet autem. Culpa.</p>
+
+								<h5 class="card-title">Profile Details</h5>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Full Name</div>
+									<div class="col-lg-9 col-md-8">{{ person.name }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Company</div>
+									<div class="col-lg-9 col-md-8">{{ person.company }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Job</div>
+									<div class="col-lg-9 col-md-8">{{ person.job_title }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Country</div>
+									<div class="col-lg-9 col-md-8">Add country</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Address</div>
+									<div class="col-lg-9 col-md-8">Add address</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Phone</div>
+									<div class="col-lg-9 col-md-8">{{ person.phone_number }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Email</div>
+									<div class="col-lg-9 col-md-8">{{ person.email }}</div>
+								</div>
+							</div>
+
+							<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+
+								<!-- Pofile Edit Form -->
+								<form>
+									<div class="row mb-3">
+										<label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+										<div class="col-md-8 col-lg-9">
+											<img src="assets/img/profile-img.jpg" alt="Profile">
+											<div class="pt-2">
+												<a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+												<a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+											</div>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="fullName" type="text" class="form-control" id="fullName" value="{{ person.name }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+										<div class="col-md-8 col-lg-9">
+											<textarea name="about" class="form-control" id="about" style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="company" type="text" class="form-control" id="company" value="{{ person.company }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="job" type="text" class="form-control" id="Job" value="{{ person.job_title }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="country" type="text" class="form-control" id="Country" value="{{ person.country }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="address" type="text" class="form-control" id="Address" value="{{ person.address }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="phone" type="text" class="form-control" id="Phone" value="{{ person.phone_number }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="email" type="email" class="form-control" id="Email" value="{{ person.email }}">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
+										<div class="col-md-8 col-lg-9">
+											<input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
+										</div>
+									</div>
+
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Save Changes</button>
+									</div>
+								</form>
+								<!-- End Profile Edit Form -->
+
+							</div>
+
+							<!-- TODO: make another tab with how long since connections etc -->
+
+						</div>
+						<!-- End Bordered Tabs -->
+					</div>
+				</div>
+
+			</div>
+			<!-- End col  -->
+		</div>
+		<!-- End row -->
+	</section>
+{% endblock %}

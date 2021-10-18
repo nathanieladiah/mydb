@@ -216,12 +216,28 @@
 		<ul class="sidebar-nav" id="sidebar-nav">
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
-					<i class="bi bi-grid"></i>
+				<a class="nav-link collapsed" href="{% url 'dashboard' %}">
+					<i class="bi bi-speedometer2"></i>
 					<span>Dashboard</span>
 				</a>
 			</li>
 			<!-- End Dashboard Nav -->
+
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="#">
+					<i class="bi bi-calendar"></i>
+					<span>Calendar</span>
+				</a>
+			</li>
+			<!-- End Calendar Nav -->
+
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="{% url 'contacts' %}">
+					<i class="bi bi-person-lines-fill"></i>
+					<span>Contacts</span>
+				</a>
+			</li>
+			<!-- End Contacts Nav -->
 			
 		</ul>
 
@@ -242,9 +258,7 @@
 		</div>
 		<!-- End Page Title -->
 
-		<section class="section dashboard">
-			{% block section %}{% endblock %}
-		</section>
+		{% block section %}{% endblock %}
 	</main>
 	<!-- ====== End Main ====== -->
 
