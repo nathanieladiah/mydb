@@ -4,6 +4,10 @@
 
 {% block title %}{{ person.name }}{% endblock %}
 
+{% block css %}
+<link href="{% static 'contacts/dashboard/css/contacts.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block page-title %}
 	{{ person.name }}
 {% endblock %}
@@ -33,6 +37,42 @@
 					</div>
 				</div>
 
+				<div class="card">
+					<div class="card-header">Significant Other</div>
+					<div class="card-body">
+						<p>Somebody</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">Children</div>
+					<div class="card-body">
+						<p>Somebody</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">Pets</div>
+					<div class="card-body">
+						<p>Somebody</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">Contact info</div>
+					<div class="card-body">
+						<p>Email: {{ person.email }}</p>
+						<p>Phone: {{ person.phone_number }}</p>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="card-header">Address</div>
+					<div class="card-body">
+						<p>Somewhere</p>
+					</div>
+				</div>
+
 			</div>	
 			<!-- End col -->
 
@@ -48,6 +88,10 @@
 							</li>
 
 							<li class="nav-item">
+								<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-interactions">Interactions</button>
+							</li>
+
+							<li class="nav-item">
 								<button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
 							</li>
 
@@ -59,42 +103,59 @@
 								<h5 class="card-title">About</h5>
 								<p class="small fst-italic">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, sunt repellat esse tempore quasi consequuntur dolorum veritatis itaque totam illo necessitatibus atque iste iure eligendi culpa fuga eveniet autem. Culpa.</p>
 
-								<h5 class="card-title">Profile Details</h5>
-
 								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Full Name</div>
-									<div class="col-lg-9 col-md-8">{{ person.name }}</div>
+									<h5 class="col-md-9 card-title">Notes</h5>
+									<button type="button" class="btn btn-sm btn-secondary col-md-3">Add Note</button>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Company</div>
-									<div class="col-lg-9 col-md-8">{{ person.company }}</div>
+								<div class="mb-4">
+									<p class="border p-2">a note</p>
+									<button type="button" class="btn btn-sm btn-primary">Edit</button>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Job</div>
-									<div class="col-lg-9 col-md-8">{{ person.job_title }}</div>
+								<div class="mb-4">
+									<p class="border p-2">another note</p>
+									<button type="button" class="btn btn-sm btn-primary">Edit</button>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Country</div>
-									<div class="col-lg-9 col-md-8">Add country</div>
+								
+							</div>
+
+							<div class="tab-pane fade pt-3" id="profile-interactions">
+								<div class="row mb-4">
+									<h5 class="card-title col-md-9"><span><i class="bi bi-telephone icon"></i></span> Phone Calls</h5>
+									<button class="btn btn-secondary btn-sm col-md-3">Log Call</button>
+									<hr>
+									<div class="col-md-12 border">
+										<p class="lead">Talked about</p>
+										<p class="border-top text-muted">date</p>
+									</div>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Address</div>
-									<div class="col-lg-9 col-md-8">Add address</div>
+								<div class="row mb-4">
+									<h5 class="card-title col-md-9"><span><i class="bi bi-bicycle icon"></i></span> Activities</h5>
+									<button class="btn btn-secondary btn-sm col-md-3">Add Activity</button>
+									<hr>
+									<div class="col-md-12 border">
+										<p class="lead">date: did this thing</p>
+									</div>
+									<div class="col-md-12 border">
+										<p class="lead">date: did this thing</p>
+									</div>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Phone</div>
-									<div class="col-lg-9 col-md-8">{{ person.phone_number }}</div>
+								<div class="row mb-4">
+									<h5 class="card-title col-md-9"><span><i class="bi bi-bell icon"></i></span> Reminders</h5>
+									<button class="btn btn-secondary btn-sm col-md-3">Add Reminder</button>
+									<hr>
+									<div class="col-md-12 border">
+										<p class="lead">date: reminder</p>
+									</div>
+									<div class="col-md-12 border">
+										<p class="lead">date: another reminder</p>
+									</div>
 								</div>
 
-								<div class="row">
-									<div class="col-lg-3 col-md-4 label">Email</div>
-									<div class="col-lg-9 col-md-8">{{ person.email }}</div>
-								</div>
 							</div>
 
 							<div class="tab-pane fade profile-edit pt-3" id="profile-edit">

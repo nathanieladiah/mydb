@@ -23,48 +23,99 @@
 			<div class="card">
 				<div class="card-body">
 					<!-- <h5 class="card-title">Do I need another title here?</h5> -->
-					<table class="table table-hover">
-						<thead>
-							<tr>
-								<th scope="col">Name</th>
-								<th scope="col">email</th>
-								<th scope="col">Phone</th>
-								<th scope="col">Job Title/ Company</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- <tr>
-								<td><a href="#">Hailee Steinfeld</a></td>
-								<td>haile@babe.com</td>
-								<td>1-800-423-8567</td>
-								<td>Actor</td>
-							</tr>
-							<tr>
-								<td>Wade Wilson</td>
-								<td>hello@kitty.com</td>
-								<td>1-800-616-6663</td>
-								<td>Chimichanga eater</td>
-							</tr> -->
-							{% for contact in contacts %}
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
 								<tr>
-									<td><a href="{% url 'contact' contact.id %}">{{contact.name}}</a></td>
-									<td>{{contact.email}}</td>
-									<td>{{contact.phone_number}}</td>
-									<td>{{contact.job_title}} - {{contact.company}}</td>
+									<th scope="col">Name</th>
+									<th scope="col">email</th>
+									<th scope="col">Phone</th>
+									<th scope="col">Job Title/ Company</th>
 								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								<!-- <tr>
+									<td><a href="#">Hailee Steinfeld</a></td>
+									<td>haile@babe.com</td>
+									<td>1-800-423-8567</td>
+									<td>Actor</td>
+								</tr>
+								<tr>
+									<td>Wade Wilson</td>
+									<td>hello@kitty.com</td>
+									<td>1-800-616-6663</td>
+									<td>Chimichanga eater</td>
+								</tr> -->
+								{% for contact in contacts %}
+									<tr>
+										<td><a href="{% url 'contact' contact.id %}">{{contact.name}}</a></td>
+										<td>{{contact.email}}</td>
+										<td>{{contact.phone_number}}</td>
+										<td>{{contact.job_title}} - {{contact.company}}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End col -->
 
 		<!-- ====== New Contact Modal ======= -->
-		<button type="button" class="btn btn-primary col-1" data-bs-toggle="modal" data-bs-target="#newContactModal"> 
-			new contact
+		<button type="button" class="btn col-lg-1 align-self-start add-button" data-bs-toggle="modal" data-bs-target="#newContactModal"> 
+			<i class="bi bi-plus-circle-fill"></i>
 		</button>
-		<div class=""
+		<div class="modal fade" id="newContactModal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add New Contact</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="row g-3" id="newContactForm" method="POST" action="#">
+							{% csrf_token %}
+							<div class="col-md-12">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Name" placeholder="Name">
+									<label for="Name">Name</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="email" class="form-control" id="Email" placeholder="Email">
+									<label for="Email">Email</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Phone" placeholder="Phone Number">
+									<label for="Phone">Phone Number</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Job" placeholder="Occupation">
+									<label for="Job">Occupation</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Company" placeholder="Company">
+									<label for="Company">Company</label>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" form="newContactForm" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ====== End New Contact Modal ====== -->
 	</div>
 	<!-- End row -->
 </section>
