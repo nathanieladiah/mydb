@@ -69,7 +69,7 @@ def register(request):
 
 @login_required
 def dashboard(request):
-	return render(request, "contacts/dashboard.html")
+	return render(request, "contacts/dashboard/dashboard.html")
 
 @login_required
 def contacts(request):
