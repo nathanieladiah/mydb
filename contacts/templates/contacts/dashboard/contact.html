@@ -37,7 +37,7 @@
 					</div>
 				</div>
 
-				<div class="card">
+				<!-- <div class="card">
 					<div class="card-header">Significant Other</div>
 					<div class="card-body">
 						<p>Somebody</p>
@@ -61,8 +61,8 @@
 				<div class="card">
 					<div class="card-header">Contact info</div>
 					<div class="card-body">
-						<p>Email: {{ person.email }}</p>
-						<p>Phone: {{ person.phone_number }}</p>
+						<p>Email: </p>
+						<p>Phone: </p>
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@
 					<div class="card-body">
 						<p>Somewhere</p>
 					</div>
-				</div>
+				</div> -->
 
 			</div>	
 			<!-- End col -->
@@ -101,24 +101,20 @@
 
 							<div class="tab-pane fade show active profile-overview" id="profile-overview">
 								<h5 class="card-title">About</h5>
-								<p class="small fst-italic">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magnam, sunt repellat esse tempore quasi consequuntur dolorum veritatis itaque totam illo necessitatibus atque iste iure eligendi culpa fuga eveniet autem. Culpa.</p>
+								<p class="small fst-italic">{{ person.description }}</p>
 
 								<div class="row">
 									<h5 class="col-md-9 card-title">Notes</h5>
 									<button type="button" class="btn btn-sm btn-secondary col-md-3">Add Note</button>
 								</div>
 
-								<div class="mb-4">
-									<p class="border p-2">a note</p>
-									<button type="button" class="btn btn-sm btn-primary">Edit</button>
-								</div>
+								{% for note in notes %}
+									<div class="mb-4">
+										<p class="border p-2">{{ note.body }}</p>
+										<button type="button" class="btn btn-sm btn-primary">Edit</button>
+									</div>
+								{% endfor %}
 
-								<div class="mb-4">
-									<p class="border p-2">another note</p>
-									<button type="button" class="btn btn-sm btn-primary">Edit</button>
-								</div>
-
-								
 							</div>
 
 							<div class="tab-pane fade pt-3" id="profile-interactions">
@@ -126,34 +122,40 @@
 									<h5 class="card-title col-md-9"><span><i class="bi bi-telephone icon"></i></span> Phone Calls</h5>
 									<button class="btn btn-secondary btn-sm col-md-3">Log Call</button>
 									<hr>
-									<div class="col-md-12 border">
-										<p class="lead">Talked about</p>
-										<p class="border-top text-muted">date</p>
-									</div>
+									{% for interaction in interactions %}
+										{% if interaction.type == 'call' %}
+											<div class="col-md-12 border mb-3">
+												<p class="lead">{{ interaction.body }}</p>
+												<p class="border-top text-muted">{{ interaction.date }}</p>
+											</div>
+										{% endif %}
+									{% endfor %}
 								</div>
 
 								<div class="row mb-4">
 									<h5 class="card-title col-md-9"><span><i class="bi bi-bicycle icon"></i></span> Activities</h5>
 									<button class="btn btn-secondary btn-sm col-md-3">Add Activity</button>
 									<hr>
-									<div class="col-md-12 border">
-										<p class="lead">date: did this thing</p>
-									</div>
-									<div class="col-md-12 border">
-										<p class="lead">date: did this thing</p>
-									</div>
+									{% for interaction in interactions %}
+										{% if interaction.type == 'act' %}
+											<div class="col-md-12 border mb-3">
+												<p class="lead">{{ interaction.date }}: {{ interaction.body }}</p>
+											</div>
+										{% endif %}
+									{% endfor %}
 								</div>
 
 								<div class="row mb-4">
 									<h5 class="card-title col-md-9"><span><i class="bi bi-bell icon"></i></span> Reminders</h5>
 									<button class="btn btn-secondary btn-sm col-md-3">Add Reminder</button>
 									<hr>
-									<div class="col-md-12 border">
-										<p class="lead">date: reminder</p>
-									</div>
-									<div class="col-md-12 border">
-										<p class="lead">date: another reminder</p>
-									</div>
+									{% for interaction in interactions %}
+										{% if interaction.type == 'rem' %}
+											<div class="col-md-12 border mb-3">
+												<p class="lead">{{ interaction.date }}: {{ interaction.body }}</p>
+											</div>
+										{% endif %}
+									{% endfor %}
 								</div>
 
 							</div>

@@ -10,5 +10,6 @@ urlpatterns = [
 	path("dashboard", views.dashboard, name="dashboard"),
 	path("contacts", views.contacts, name="contacts"),
 	path("meetings", views.meetings, name="meetings"),
-	path("contact/<int:contact_id>", views.contact, name="contact")
+	path("contact/<int:contact_id>", views.contact, name="contact"),
+	path("add_contact", views.add_contact, name="add_contact")
 ]

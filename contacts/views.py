@@ -5,7 +5,7 @@ from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Contact, User
+from .models import Contact, Interaction, User, Note
 
 # Create your views here.
 
@@ -82,10 +82,34 @@ def contacts(request):
 	})
 
 @login_required
+def add_contact(request):
+	if request.method == "POST":
+		user = request.user
+		description = request.POST['description']
+		name = request.POST['name']
+		email = request.POST['email']
+		phone = request.POST['phone']
+		if phone == "":
+			phone = None
+		job = request.POST['job']
+		if job == "":
+			job = None
+		company = request.POST['company']
+		if company == "":
+			company = None
+		person = Contact(user=user, phone_number=phone, email=email, name=name, job_title=job, company=company, description=description)
+		person.save()
+		return HttpResponseRedirect(reverse("contact", args=(person.id, )))
+
+@login_required
 def contact(request, contact_id):
 	person = Contact.objects.get(pk=contact_id)
+	notes = Note.objects.filter(user=request.user, contact=person)
+	interactions = Interaction.objects.filter(user=request.user, contact=person)
 	return render(request, 'contacts/dashboard/contact.html', {
-		"person": person
+		"person": person,
+		"notes": notes,
+		"interactions": interactions
 	})
 
 

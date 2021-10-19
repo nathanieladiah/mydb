@@ -74,36 +74,42 @@
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form class="row g-3" id="newContactForm" method="POST" action="#">
+						<form class="row g-3" id="newContactForm" method="POST" action="{% url 'add_contact' %}">
 							{% csrf_token %}
 							<div class="col-md-12">
 								<div class="form-floating">
-									<input type="text" class="form-control" id="Name" placeholder="Name">
+									<input type="text" class="form-control" id="Name" name="name" required placeholder="Name">
 									<label for="Name">Name</label>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="email" class="form-control" id="Email" placeholder="Email">
+									<input type="email" class="form-control" id="Email" name="email" required placeholder="Email">
 									<label for="Email">Email</label>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="text" class="form-control" id="Phone" placeholder="Phone Number">
+									<input type="tel" class="form-control" id="Phone" name="phone" required placeholder="Phone Number">
 									<label for="Phone">Phone Number</label>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="text" class="form-control" id="Job" placeholder="Occupation">
+									<input type="text" class="form-control" id="Job" name="job" placeholder="Occupation">
 									<label for="Job">Occupation</label>
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-floating">
-									<input type="text" class="form-control" id="Company" placeholder="Company">
+									<input type="text" class="form-control" id="Company" name="company" placeholder="Company">
 									<label for="Company">Company</label>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-floating">
+									<textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+									<label for="description">Description</label>
 								</div>
 							</div>
 						</form>
