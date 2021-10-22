@@ -15,9 +15,7 @@ Then you can see each contact on an individual page. JavaScript functions allow 
 
 When fully realized, there will be notifications on the dashboard page that will notify you if you haven't contacted/ interacted with a person within a set timeframe. But for now that feature is not completed.
 
-### Build Log
 
-#### 25th September 2021
 
 
 * Create new django project and app
@@ -25,9 +23,7 @@ When fully realized, there will be notifications on the dashboard page that will
 * Create models for the app
 	* installed django-phonenumber-field
 
----
 
-#### 17th October 2021
 
 * Each contact should have a page where their info is stored:
 	* Name
@@ -42,12 +38,10 @@ TODO: When a page loads remove collapsed from class list and add it to all other
 
 * Should it be a single page app with javascript to load the different sections?
 
-#### 18th October 2021
 
 * Contactlist and contact page design complete
 
 
-#### 19th October 2021
 
 * Create dashboard template
 * The upcoming events list should list all the events for upcoming days in the current month
