@@ -1,6 +1,20 @@
 # mydb
 ## A personal db for your life
 
+#### [Video Demo](https://youtu.be/PitVpRMRot8)
+
+
+#### Description:
+I have created a web application using django Python, and JavaScript.
+
+The software allows you to add contacts, and keep track of your interactions with them.
+
+Currently you can create a user, and then create contacts, and record interactions with them such as calls, activities, reminders and events. 
+
+Then you can see each contact on an individual page. JavaScript functions allow you to dynamically edit, or delete these interactions.
+
+When fully realized, there will be notifications on the dashboard page that will notify you if you haven't contacted/ interacted with a person within a set timeframe. But for now that feature is not completed.
+
 ### Build Log
 
 #### 25th September 2021
