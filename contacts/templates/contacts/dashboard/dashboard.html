@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block title %}Dashboard{% endblock %}
+{% block css %}
+	<link href="{% static 'contacts/dashboard/css/dashboard.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block page-title %}
 	Dashboard
@@ -15,14 +18,106 @@
 {% block section %}
 <section class="section dashboard">
 	<div class="row">
+		<div class="col-lg-10">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Recents</h5>
+				</div>
+			</div>
+		</div>
+		<!-- <div class="col-lg-2 align-self-center">
+			<button class="btn btn-success">Add Someone</button>
+		</div> -->
+		<!-- ====== New Contact Modal ======= -->
+		<button type="button" class="btn btn-success col-lg-2 align-self-center" data-bs-toggle="modal" data-bs-target="#newContactModal"> 
+			Add Someone
+		</button>
+		<div class="modal fade" id="newContactModal" tabindex="-1">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add New Contact</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="row g-3" id="newContactForm" method="POST" action="{% url 'add_contact' %}">
+							{% csrf_token %}
+							<div class="col-md-12">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Name" name="name" required placeholder="Name">
+									<label for="Name">Name</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="email" class="form-control" id="Email" name="email" required placeholder="Email">
+									<label for="Email">Email</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="tel" class="form-control" id="Phone" name="phone" required placeholder="Phone Number">
+									<label for="Phone">Phone Number</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Job" name="job" placeholder="Occupation">
+									<label for="Job">Occupation</label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-floating">
+									<input type="text" class="form-control" id="Company" name="company" placeholder="Company">
+									<label for="Company">Company</label>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-floating">
+									<textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+									<label for="description">Description</label>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="submit" form="newContactForm" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ====== End New Contact Modal ====== -->
+	</div>
+
+	<div class="row">
 		<div class="col-lg-6">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title">What to put here</h5>
-					<p>What should the dashboard have?</p>
+					<h5 class="card-title">Upcoming Events</h5>
+					{% for event in events %}
+						<div class="event-wrapper border mb-4 px-3">
+							<div class="event-date border-bottom">{{ event.date }}| {{ event.contact.name }}</div>
+							<div class="event-details text-center">{{ event.details }}</div>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
-
+		</div>
+		<div class="col-lg-6">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Alerts</h5>
+					<!-- <div class="alert-wrapper">
+						<span>An Alert!</span> 
+					</div> -->
+					{% for alert in alerts %}
+						<div class="alert-wrapper">
+							{{ alert }}
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 		<!-- End col -->
 	</div>

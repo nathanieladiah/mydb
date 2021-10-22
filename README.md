@@ -31,3 +31,10 @@ TODO: When a page loads remove collapsed from class list and add it to all other
 #### 18th October 2021
 
 * Contactlist and contact page design complete
+
+
+#### 19th October 2021
+
+* Create dashboard template
+* The upcoming events list should list all the events for upcoming days in the current month
+* Alerts should list off people that haven't been contacted a long time, also birthdays/anniversaries
